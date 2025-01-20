@@ -1,16 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Canvas Cell Simulation (Vite + TS)</title>
-  </head>
-  <body>
-    <div id="app">
-      <!-- The canvas will be injected or referenced in code -->
-      <canvas id="simCanvas"></canvas>
+<head>
+  <meta charset="UTF-8" />
+  <title>Cell Growth Simulation</title>
+  <style>
+    /* Basic styling */
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    #controls {
+      display: flex;
+      gap: 1rem;
+      padding: 0.5rem;
+      background: #f0f0f0;
+      align-items: center;
+    }
+    label {
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+    #simCanvas {
+      background: #fff;
+      border: 1px solid #ccc;
+      display: block;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <button class="close">&times;</button>
+      <h1>User Instructions</h1>
+      <p>Large grids with big cell sizes can exceed browser limits (often around 8192×8192 or 16384×16384 pixels depending on the broswer) and consume huge amount of memory, causing blank canvases or crashes. If you have 1,000 cells each at 20×20 px, 
+        that’s 400 million pixels—too large for most systems. Keep total width and height under ~8k to avoid failures, find a balance between cell size and total cell count when necessary. </p>
+      <h2>Default Settings</h2>
+      <ul>
+        <li>Grid Width: 30 columns</li>
+        <li>Grid Height: 30 rows</li>
+        <li>Cell Size: 10 pixels</li>
+        <li>Update Interval: 300ms</li>
+        
+      </ul>
     </div>
+  </div>
+    <button id="openModalBtn">User Instructions</button>
+    <label>
+      Width (cells):
+      <input type="number" id="gridWidth" value="30" min="5" max="5500" />
+    </label>
+    <label>
+      Height (cells):
+      <input type="number" id="gridHeight" value="30" min="5" max="5500" />
+    </label>
+    <label>
+      Upate interval (ms):
+      <input type="number" id="interval" value="300" min="5" max="300" />
+    </label>
+    <label>
+      cell size (px):
+      <input type="number" id="pixel" value="10" min="1" max="20" />
+    </label>
+    <button id="startPauseBtn">Start</button>
+    <button id="resetBtn">Reset</button>
 
 
-    <script type="module" src="../src/main.ts"></script>
-  </body>
+  </div>
+
+  <!-- Canvas with default size, we’ll resize it to match grid on init -->
+  <canvas id="simCanvas" width="600" height="600"></canvas>
+
+  <!-- Script reference (Vite or bundler can load TS from here) -->
+  <script type="module" src="../src/main.ts"></script>
+</body>
 </html>
