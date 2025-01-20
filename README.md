@@ -1,6 +1,7 @@
 # Cell Growth Simulation V2 (Original Version at [Cell Growth Simulation V1](https://github.com/Thehashhobo/Cell-Growth-Simulation))
 An enhanced version of the Cell Growth Simulation that includes optimized rendering for larger grids and improved performance. Leveraging a Canvas rendering approach, this release reduces the need for large number of DOM objects. The result is a smoother simulation experience, even when exploring bigger dimensions containing up to 100 million cells (with caution around browser canvas limits).
 
+#### The website is hosted on github pages: https://thehashhobo.github.io/Cell-Growth-Simulation-V2/
 ## Features
 - Canvas-Based Rendering: Replaces the traditional DOM-based cell representation with a single canvas element, eliminating the node-limit overhead and performance bottlenecks of large DOM trees.
 - Partial Rendering: Only re-draws cells that have changed state on each iteration, reducing redundant computations and improving scalability for larger grids.
@@ -27,4 +28,4 @@ Before you begin, ensure you have the following installed on your machine:
 4. Start the development server: Open your browser and navigate to http://localhost:3000 to view the application: \
 `npm run dev`
 
-The website is hosted on github pages: https://thehashhobo.github.io/Cell-Growth-Simulation-V2/
+
